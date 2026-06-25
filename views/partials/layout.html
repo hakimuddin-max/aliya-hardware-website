@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ALIYA HARDWARE LLC — trusted supplier of oilfield equipment, marine hardware, pipe fittings, valves, and industrial machinery in the UAE since 1989.">
+<title>ALIYA HARDWARE LLC | Sharjah, UAE — Since 1989</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/main.css">
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">AH</div>
+      <div class="logo-text">
+        ALIYA HARDWARE LLC
+        <span>Sharjah · UAE · Est. 1989</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class="{{ACTIVE_HOME}}">Home</a></li>
+      <li><a href="/about" class="{{ACTIVE_ABOUT}}">About</a></li>
+      <li><a href="/products" class="{{ACTIVE_PRODUCTS}}">Products</a></li>
+      <li><a href="/industries" class="{{ACTIVE_INDUSTRIES}}">Industries</a></li>
+      <li><a href="/contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="toggleMenu()">Home</a>
+    <a href="/about" onclick="toggleMenu()">About</a>
+    <a href="/products" onclick="toggleMenu()">Products</a>
+    <a href="/industries" onclick="toggleMenu()">Industries</a>
+    <a href="/contact" onclick="toggleMenu()">Get a Quote</a>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE CONTENT ═══════════ -->
+<main>
+{{PAGE_CONTENT}}
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-mark">AH</div>
+          <div class="logo-text">ALIYA HARDWARE LLC<span>Sharjah · UAE · Est. 1989</span></div>
+        </a>
+        <p>A trusted supplier of oilfield, marine, industrial, and general hardware equipment across the UAE and Middle East since 1989 — over 35 years of reliable service.</p>
+        <div class="footer-contact-quick">
+          <a href="tel:+97165333495">📞 +971 6 533 3495</a>
+          <a href="https://wa.me/971567211873" target="_blank" rel="noopener">💬 +971 56 721 1873</a>
+          <a href="mailto:sales@aliyaest.com">✉️ sales@aliyaest.com</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/industries">Industries</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a href="/products#oilfield">Oilfield Equipment</a></li>
+          <li><a href="/products#marine">Marine Supplies</a></li>
+          <li><a href="/products#piping">Pipes & Fittings</a></li>
+          <li><a href="/products#steel">Structural Steel</a></li>
+          <li><a href="/products#machinery">Industrial Machinery</a></li>
+          <li><a href="/products#hardware">General Hardware</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Location</div>
+        <p class="footer-address">First Industrial Street<br>(BMW Road), Sharjah<br>United Arab Emirates<br>P.O. Box 37646</p>
+        <p class="footer-hours">Mon–Sat: 8:00 AM – 8:00 PM<br>Sunday: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ALIYA HARDWARE LLC. All Rights Reserved. Established 1989 · Sharjah, UAE.</span>
+      <span>
+        <a href="tel:+97165333495">+971 6 533 3495</a> &nbsp;·&nbsp;
+        <a href="mailto:sales@aliyaest.com">sales@aliyaest.com</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/971567211873" class="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="/public/js/main.js"></script>
+</body>
+</html>
