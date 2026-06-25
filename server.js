@@ -1,8 +1,6 @@
 /**
  * ALIYA HARDWARE LLC — Website Server
- * Pure Node.js — works locally AND on Vercel (no npm needed).
- * Local: node server.js → http://localhost:3000
- * Vercel: auto-detected via vercel.json
+ * Works locally (node server.js) AND on Vercel serverless.
  */
 
 const http = require('http');
@@ -24,7 +22,6 @@ const MIME = {
   '.json': 'application/json',
 };
 
-// ── ROUTE → PAGE FILE MAP ──────────────────────────────
 const ROUTES = {
   '/':           'views/pages/home.html',
   '/about':      'views/pages/about.html',
@@ -33,13 +30,30 @@ const ROUTES = {
   '/contact':    'views/pages/contact.html',
 };
 
-// Root directory — works both locally and on Vercel
-const ROOT = __dirname;
+// ── KEY FIX: use process.cwd() so Vercel finds files correctly ──
+function getRoot() {
+  // On Vercel, __dirname is inside /var/task/api/ or similar
+  // process.cwd() always points to /var/task (project root)
+  // We check both and use whichever has the views folder
+  const cwd = process.cwd();
+  const dir = __dirname;
 
-// ── REQUEST HANDLER ────────────────────────────────────
+  if (fs.existsSync(path.join(cwd, 'views'))) return cwd;
+  if (fs.existsSync(path.join(dir, 'views'))) return dir;
+  // Walk up from __dirname
+  let p = dir;
+  for (let i = 0; i < 5; i++) {
+    if (fs.existsSync(path.join(p, 'views'))) return p;
+    p = path.dirname(p);
+  }
+  return cwd; // fallback
+}
+
 function handler(req, res) {
+  const ROOT = getRoot();
+
   // Strip query strings and trailing slash (except root)
-  let urlPath = req.url.split('?')[0];
+  let urlPath = (req.url || '/').split('?')[0];
   if (urlPath !== '/' && urlPath.endsWith('/')) urlPath = urlPath.slice(0, -1);
 
   // 1. Static files from /public/
@@ -70,7 +84,7 @@ function handler(req, res) {
     fs.readFile(pagePath, 'utf8', (err, pageContent) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Page load error: ' + err.message);
+        res.end('Page load error: ' + err.message + ' | ROOT=' + ROOT);
         return;
       }
       fs.readFile(layoutPath, 'utf8', (err2, layout) => {
@@ -84,7 +98,7 @@ function handler(req, res) {
         let html = layout.replace('{{PAGE_CONTENT}}', pageContent);
 
         // Set active nav link
-        const pageKey = urlPath === '/' ? 'home' : urlPath.replace('/', '').toUpperCase();
+        const pageKey = urlPath === '/' ? 'HOME' : urlPath.replace('/', '').toUpperCase();
         html = html.replace(/\{\{ACTIVE_([A-Z]+)\}\}/g, (_, p) =>
           p === pageKey ? 'active' : ''
         );
@@ -104,17 +118,16 @@ function handler(req, res) {
   });
 }
 
-// ── START SERVER (local dev) ───────────────────────────
-const server = http.createServer(handler);
-server.listen(PORT, () => {
-  console.log(`\n✅  ALIYA HARDWARE LLC running at http://localhost:${PORT}\n`);
-  console.log('   Pages:');
-  Object.keys(ROUTES).forEach(r =>
-    console.log(`   → http://localhost:${PORT}${r}`)
-  );
-  console.log('');
-});
+// Local dev server
+if (require.main === module) {
+  const server = http.createServer(handler);
+  server.listen(PORT, () => {
+    console.log(`\n✅  ALIYA HARDWARE LLC running at http://localhost:${PORT}\n`);
+    Object.keys(ROUTES).forEach(r =>
+      console.log(`   → http://localhost:${PORT}${r}`)
+    );
+  });
+}
 
-// ── VERCEL EXPORT ──────────────────────────────────────
-// Vercel calls this as a serverless function
+// Vercel serverless export
 module.exports = handler;
