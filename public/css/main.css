@@ -903,3 +903,76 @@ section { padding: 90px 0; }
   .gallery-img { min-width: 220px; height: 160px; }
   .values-grid, .pillars { grid-template-columns: 1fr; }
 }
+
+/* ═══ LOCATION SECTION (home) ═══════════════════════ */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.loc-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.loc-card {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  background: var(--ash);
+  border-radius: var(--r);
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  transition: all var(--t);
+}
+.loc-card:hover { background: var(--white); box-shadow: var(--shadow); transform: translateY(-2px); }
+.loc-card-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
+.loc-card-title { font-weight: 700; font-size: .82rem; color: var(--navy); margin-bottom: .2rem; }
+.loc-card-text { font-size: .8rem; color: var(--sub); line-height: 1.6; }
+.loc-card-text a { color: var(--gold); }
+.loc-card-text a:hover { color: var(--gold-dim); }
+
+/* MAP EMBED */
+.map-embed-wrap { position: relative; }
+.map-open-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 1rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--gold);
+  transition: gap var(--t);
+}
+.map-open-link:hover { gap: .7rem; }
+
+/* GOOGLE MAPS BUTTON on contact page */
+.gmaps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--mist);
+  padding: .75rem 1.5rem;
+  border-radius: var(--r);
+  font-weight: 700;
+  font-size: .9rem;
+  transition: all var(--t);
+  margin-top: .75rem;
+  width: 100%;
+  justify-content: center;
+}
+.gmaps-btn:hover {
+  background: var(--ash);
+  border-color: var(--gold);
+  color: var(--gold-dim);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; }
+  .loc-cards { grid-template-columns: 1fr; }
+}
